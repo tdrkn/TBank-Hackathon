@@ -1,0 +1,26 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install poetry
+        run: pip install poetry
+      - name: Install deps
+        run: poetry install
+      - name: Lint
+        run: make lint
+      - name: Test
+        run: make test
+      - name: Docker build
+        run: docker build -t newsbot .
+      - name: Docker push
+        if: ${{ secrets.CR_PAT && secrets.IMAGE_NAME }}
+        run: |
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u USERNAME --password-stdin
+          docker tag newsbot ${{ secrets.IMAGE_NAME }}
+          docker push ${{ secrets.IMAGE_NAME }}
