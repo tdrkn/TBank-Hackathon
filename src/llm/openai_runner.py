@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import json
 
 import openai
-from guardrails.pydantic_parser import Guard
+from guardrails import Guard
+from guardrails.classes.validation_outcome import ValidationOutcome
 from pydantic import BaseModel
+from typing import Optional
 
 from ..config import settings
 
@@ -30,11 +31,11 @@ NEWS_SCHEMA = {
 
 class NewsDigest(BaseModel):
     ticker: str
-    headline: str | None = None
+    headline: Optional[str] = None
     summary: str
     sentiment: float
-    impact: str | None = None
-    event_type: str | None = None
+    impact: Optional[str] = None
+    event_type: Optional[str] = None
 
 
 guard = Guard.from_pydantic(NewsDigest)
@@ -55,8 +56,10 @@ async def extract_json(text: str) -> NewsDigest:
         )
         arguments = response.choices[0].message.function_call.arguments
         try:
-            data: NewsDigest = guard.parse(json.loads(arguments))
-            return data
+            result = guard.parse(arguments)
+            if isinstance(result, ValidationOutcome):
+                return NewsDigest(**result.validated_output)
+            return result
         except Exception:
             prompt = (
                 "Ответ не соответствует схеме. Пожалуйста, верни JSON строго по схеме."
