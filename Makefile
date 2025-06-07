@@ -1,14 +1,14 @@
 .PHONY: dev lint test run
 
 dev:
-poetry install
+	poetry install
 
 lint:
-ruff src tests
-mypy src tests
+	ruff src tests
+	mypy src tests
 
 test:
-pytest -s
+	pytest -s
 
 run:
-poetry run python -m src.main
+	poetry run python -m src.main

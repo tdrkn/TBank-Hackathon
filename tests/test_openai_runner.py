@@ -33,7 +33,7 @@ async def test_extract_json_retry(monkeypatch):
         )
     ]
 
-    with patch("openai.ChatCompletion.acreate", side_effect=[bad_resp, good_resp]):
+    with patch("openai.ChatCompletion.acreate", new=AsyncMock(side_effect=[bad_resp, good_resp])):
         result = await extract_json("text")
         assert isinstance(result, NewsDigest)
         assert result.ticker == "GAZP"
