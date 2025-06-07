@@ -38,7 +38,13 @@ docker compose up --build
 - `GEMINI_API_KEY` – ключ Gemini для генерации краткого описания.
 - `TINVEST_TOKEN` – токен Tinkoff Invest API.
 - `TINVEST_ENV` – окружение `prod` или `sandbox` для Tinkoff Invest.
+- `RSS_FEEDS` – список RSS‑лент в формате `name=url,name=url`.
 - `POSTGRES_*` – параметры подключения к базе данных.
+
+По умолчанию бот использует следующие источники:
+```
+RSS_FEEDS="rbc=https://static.feed.rbc.ru/rbc/internal/rss.rbc.ru/rbc.ru/mainnews.rss,kommersant=https://www.kommersant.ru/RSS/section-economics.xml,cbr=http://www.cbr.ru/rss/RssNews,bankiru=https://www.banki.ru/news/lenta/?r1=rss&r2=news,finam_companies=https://www.finam.ru/analysis/conews/rsspoint/,finam_bonds=https://bonds.finam.ru/news/today/rss.asp,tass=https://tass.com/rss/v2.xml,profinance_stock=https://www.profinance.ru/fond.xml,profinance_economy=https://www.profinance.ru/econom.xml"
+```
 
 Полный список смотрите в `.env.example`.
 
