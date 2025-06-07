@@ -8,7 +8,9 @@ lint:
 	mypy src tests
 
 test:
-	pytest -s
+
+	poetry run pytest -s
+
 
 run:
 	poetry run python -m src.main
