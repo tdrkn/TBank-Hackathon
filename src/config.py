@@ -3,10 +3,10 @@ from pydantic import SecretStr
 
 
 class Settings(BaseSettings):
-    telegram_token: SecretStr
-    openai_api_key: SecretStr
-    gemini_api_key: SecretStr
-    tinvest_token: SecretStr
+    telegram_token: SecretStr = SecretStr("")
+    openai_api_key: SecretStr = SecretStr("")
+    gemini_api_key: SecretStr = SecretStr("")
+    tinvest_token: SecretStr = SecretStr("")
     tinvest_env: str = "prod"
     postgres_user: str = "postgres"
     postgres_password: SecretStr = SecretStr("postgres")

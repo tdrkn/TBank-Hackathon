@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import openai
 from guardrails import Guard
-from guardrails.classes.validation_outcome import ValidationOutcome
+
 from pydantic import BaseModel
 from typing import Optional
 
