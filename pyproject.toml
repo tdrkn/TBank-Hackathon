@@ -11,14 +11,15 @@ python-telegram-bot = "^21.1"
 openai = "^1.23.0"
 google-generativeai = "^0.5.1"
 langchain = "^0.1.17"
-guardrails-ai = "^0.3.3"
-tinkoff-investments = "^2.0.1"
+guardrails-ai = "^0.6.6"
+tinkoff-invest = "^1.0.5"
 feedparser = "^6.0.11"
 aiohttp = "^3.9.5"
 SQLAlchemy = {version="^2.0.30", extras=["asyncio"]}
 asyncpg = "^0.29.0"
 apscheduler = "^3.10.4"
 pydantic = "^2.7.1"
+pydantic-settings = "^2.9.1"
 python-dotenv = "^1.0.1"
 aiofiles = "^23.2.1"
 
@@ -35,6 +36,7 @@ line-length = 88
 python_version = "3.11"
 strict = true
 mypy_path = "src"
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core>=1.5.0"]
