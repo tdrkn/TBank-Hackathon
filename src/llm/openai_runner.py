@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 
 import openai
-from guardrails.pydantic_parser import Guard
+from guardrails import Guard
 from pydantic import BaseModel
 
 from ..config import settings
